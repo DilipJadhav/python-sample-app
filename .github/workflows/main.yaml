@@ -13,10 +13,10 @@ on:
     paths-ignore: .github/**  
 env:
   PROJECT_ID: absolute-cache-468112-e2
-  REGION: asia-south1
-  ZONE: asia-south1-a
+  REGION: asia-southeast1
+  ZONE: asia-southeast1-a
   CLUSTER_NAME: my-gke-cluster
-  IMAGE_NAME: asia-south1-docker.pkg.dev/absolute-cache-468112-e2/python-app
+  IMAGE_NAME: asia-southeast1-docker.pkg.dev/absolute-cache-468112-e2/python-app
   
 jobs:
   infra-deploy:
@@ -68,7 +68,7 @@ jobs:
 
     - name: Build Docker image
       run: |
-        gcloud auth configure-docker asia-south1-docker.pkg.dev --quiet
+        gcloud auth configure-docker asia-southeast1-docker.pkg.dev --quiet
         docker build -t $IMAGE_NAME/python-app:${{ github.sha }} .
         docker push $IMAGE_NAME/python-app:${{ github.sha }}
 

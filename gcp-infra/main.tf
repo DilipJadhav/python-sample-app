@@ -36,7 +36,7 @@ resource "google_container_cluster" "primary" {
 }
 
 resource "google_artifact_registry_repository" "python-app" {
-  location      = "asia-south1"
+  location      = "asia-southeast1"
   repository_id = "python-app"
   description   = "example docker repository"
   format        = "DOCKER"
