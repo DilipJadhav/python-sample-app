@@ -16,7 +16,7 @@ env:
   REGION: asia-south1
   ZONE: asia-south1-a
   CLUSTER_NAME: my-gke-cluster
-  IMAGE_NAME: gcr.io/absolute-cache-468112-e2/python-app
+  IMAGE_NAME: asia-south1-docker.pkg.dev/absolute-cache-468112-e2/python-app
   
 jobs:
   infra-deploy:
