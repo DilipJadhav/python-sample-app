@@ -11,7 +11,7 @@ terraform {
     }
   }
   backend "gcs" {
-    bucket = "terraform-backend-gke"
+    bucket = "terraform-backend-gke-1"
     prefix = "gke"
   }
 }
