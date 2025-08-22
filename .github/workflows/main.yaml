@@ -69,7 +69,7 @@ jobs:
       run: |
         gcloud auth configure-docker asia-south1-docker.pkg.dev --quiet
         docker build -t $IMAGE_NAME:${{ github.sha }} .
-        docker push $IMAGE_NAME:${{ github.sha }}
+        docker push $IMAGE_NAME
 
   deploy_in_k8s: 
     name: Update Kubernetes Deployment
