@@ -35,6 +35,13 @@ resource "google_container_cluster" "primary" {
   }
 }
 
+resource "google_artifact_registry_repository" "python-app" {
+  location      = "asia-south1"
+  repository_id = "python-app"
+  description   = "example docker repository"
+  format        = "DOCKER"
+}
+
 provider "kubernetes" {
   host                   = google_container_cluster.primary.endpoint
   cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)

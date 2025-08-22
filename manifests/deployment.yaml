@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: python-app
-        image: gcr.io/absolute-cache-468112-e2/python-app:latest
+        image: gcr.io/absolute-cache-468112-e2/python-app:${{ github.sha }}
         ports:
         - containerPort: 5000
 
