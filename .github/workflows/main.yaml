@@ -89,6 +89,6 @@ jobs:
     - name: k8s deployment
       run: |
           cd manifests
-          gcloud container clusters get-credentials ${{env.CLUSTER_NAME}} --zone=$(( env.ZONE )) --project=${{ env.PROJECT_ID }}
+          gcloud container clusters get-credentials ${{ env.CLUSTER_NAME}} --zone=$(( env.ZONE )) --project=${{ env.PROJECT_ID }}
           kubectl apply -f deployment.yaml -n default
           kubectl rollout status deployment/python-app
