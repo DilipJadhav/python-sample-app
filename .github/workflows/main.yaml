@@ -14,7 +14,7 @@ env:
   REGION: asia-south1
   ZONE: asia-south1-a
   CLUSTER_NAME: my-gke-cluster
-  IMAGE_NAME: gcr.io/${{ env.PROJECT_ID }}/python-app
+  IMAGE_NAME: gcr.io/${{ PROJECT_ID }}/python-app
   
 jobs:
   infra-deploy:
