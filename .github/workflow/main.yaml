@@ -1,0 +1,42 @@
+---
+name: CI-CD GKE Deployment
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+env:
+  PROJECT_ID: absolute-cache-468112-e2
+  REGION: asia-south1
+  ZONE: asia-south1-a
+  CLUSTER_NAME: my-gke-cluster
+  IMAGE_NAME: gcr.io/${{ env.PROJECT_ID }}/python-app
+  
+jobs:
+  infra-deploy:
+    name: Terraform Apply GKE
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.5.5
+
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+      env:
+        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_TERRAFORM_GKE }}
+
+
+  #gke-deploy:
+  
