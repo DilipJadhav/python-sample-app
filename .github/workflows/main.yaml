@@ -85,14 +85,10 @@ jobs:
       with:
         credentials_json: ${{ secrets.GOOGLE_TERRAFORM_GKE }}
 
-    - name: Set up GKE credentials
-      uses: google-github-actions/get-gke-credentials@v1
-      with:
-        cluster_name: ${{ env.CLUSTER_NAME }}
-        location: ${{ env.ZONE }}
 
     - name: k8s deployment
       run: |
           cd manifests
+          gcloud container clusters get-credentials ${{env.CLUSTER_NAME}} --zone=$(( env.ZONE )) --project=${{ env.PROJECT_ID }}
           kubectl apply -f deployment.yaml -n default
           kubectl rollout status deployment/python-app
