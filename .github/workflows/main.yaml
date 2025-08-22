@@ -68,7 +68,7 @@ jobs:
     - name: Build Docker image
       run: |
         gcloud auth configure-docker asia-south1-docker.pkg.dev --quiet
-        docker build -t $IMAGE_NAME:${{ github.sha }} .
+        docker build -t $IMAGE_NAME/python-app:${{ github.sha }} .
         docker push $IMAGE_NAME/python-app:${{ github.sha }}
 
   deploy_in_k8s: 
