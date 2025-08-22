@@ -6,9 +6,11 @@ on:
   push:
     branches:
       - master
+    paths-ignore: .github/**
   pull_request:
     branches:
       - master
+    paths-ignore: .github/**  
 env:
   PROJECT_ID: absolute-cache-468112-e2
   REGION: asia-south1
