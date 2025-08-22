@@ -65,11 +65,9 @@ jobs:
       with:
        credentials_json: ${{ secrets.GOOGLE_TERRAFORM_GKE }}  
 
-    - name: Configure Docker for GCR
-      run: gcloud auth configure-docker
-   
     - name: Build Docker image
       run: |
+        gcloud auth configure-docker --quiet
         docker build -t $IMAGE_NAME:${{ github.sha }} .
         docker push $IMAGE_NAME:${{ github.sha }}
 
