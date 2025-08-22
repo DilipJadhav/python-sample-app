@@ -63,10 +63,7 @@ jobs:
     - name: Authenticate to GCR
       uses: google-github-actions/auth@v1
       with:
-       credentials_json: ${{ secrets.GCP_SA_KEY }}
-
-    - name: Configure Docker for GCR
-      run: gcloud auth configure-docker    
+       credentials_json: ${{ secrets.GOOGLE_TERRAFORM_GKE }}  
 
     - name: Build Docker image
       run: |
