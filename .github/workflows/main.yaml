@@ -23,6 +23,7 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+    
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -31,11 +32,18 @@ jobs:
 
     - name: Terraform Init
       run: terraform init
+      working-directory: ./gcp-infra
+
+    - name: Terraform plan
+      run: terraform plan
+      working-directory: ./gcp-infra
+      
 
     - name: Terraform Apply
       run: terraform apply -auto-approve
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_TERRAFORM_GKE }}
+      working-directory: ./gcp-infra  
 
 
   #gke-deploy:
