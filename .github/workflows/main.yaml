@@ -90,7 +90,6 @@ jobs:
       with:
         cluster_name: ${{ env.CLUSTER_NAME }}
         location: ${{ env.ZONE }}
-        project: ${{ env.PROJECT_ID }}
 
     - name: k8s deployment
       run: |
