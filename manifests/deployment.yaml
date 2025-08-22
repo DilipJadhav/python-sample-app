@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: python-app
-        image: asia-south1-docker.pkg.dev/absolute-cache-468112-e2/python-app/python-app:${{ github.sha }}
+        image: asia-southeast1-docker.pkg.dev/absolute-cache-468112-e2/python-app/python-app:${{ github.sha }}
         ports:
         - containerPort: 5000
 
