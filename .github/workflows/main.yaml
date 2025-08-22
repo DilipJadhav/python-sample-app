@@ -67,7 +67,7 @@ jobs:
 
     - name: Build Docker image
       run: |
-        gcloud auth configure-docker --quiet
+        gcloud auth configure-docker asia-south1-docker.pkg.dev --quiet
         docker build -t $IMAGE_NAME:${{ github.sha }} .
         docker push $IMAGE_NAME:${{ github.sha }}
 
