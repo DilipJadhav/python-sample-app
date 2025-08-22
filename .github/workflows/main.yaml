@@ -22,6 +22,7 @@ jobs:
   infra-deploy:
     name: Terraform Apply GKE
     runs-on: ubuntu-latest
+    needs: build_docker_image
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -89,6 +90,7 @@ jobs:
       with:
         cluster_name: ${{ env.CLUSTER_NAME }}
         location: ${{ env.ZONE }}
+        project: ${{ env.PROJECT_ID }}
 
     - name: k8s deployment
       run: |
