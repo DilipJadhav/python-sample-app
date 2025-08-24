@@ -1,19 +1,28 @@
-# Use official Python image as base
-FROM python:3.9-slim
+# Builder stage: Use official Python image to install dependencies
+FROM python:3.9-slim as builder
 
-# Set working directory
 WORKDIR /app
 
-# Copy requirements and install
-COPY requirements.txt requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy requirements and install into a target folder
+COPY requirements.txt .
+RUN pip install --no-cache-dir --user -r requirements.txt
 
 # Copy app code
 COPY app.py .
 
-# Expose port
+# Final stage: Use a clean Python image
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# Copy only the app code and installed packages from builder
+COPY --from=builder /app/app.py .
+COPY --from=builder /root/.local /root/.local
+
+# Make sure python can find installed packages
+ENV PATH=/root/.local/bin:$PATH
+ENV PYTHONPATH=/root/.local
+
 EXPOSE 5000
 
-# Run the application
 CMD ["python", "app.py"]
-
